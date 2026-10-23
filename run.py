@@ -16,8 +16,8 @@ in the terminal Command Line Interface (CLI), similar to the practices in the le
 def main():
     parser = argparse.ArgumentParser(description="module 8 assignment")
     parser.add_argument('-e', "--num_epochs", type= int, help = 'Number of epochs', default = 2)
-    parser.add_argument("--batch_size", '-b', type= int, help = 'Batch size for images', default = 25)
-    parser.add_argument("--learning_rate", '-l', type= float, help = 'Learning Rate for training', default = .0002)
+    parser.add_argument("-b", "--batch_size", type= int, help = 'Batch size for images', default = 1000)
+    parser.add_argument("-l", "--learning_rate", type= float, help = 'Learning Rate for training', default = .001)
     #parse the arguments
     args = parser.parse_args()
     lr = args.learning_rate
