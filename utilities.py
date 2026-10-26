@@ -20,6 +20,7 @@ def plot(loss_list, acc_train, acc_test, save_path='./figure.png'):
     plt.subplot(1, 2, 1)
     plt.plot(loss_list)
     plt.xlabel('Iteration')
+    plt.savefig(save_path)
 
 
 #Convolutional neural network
@@ -76,7 +77,7 @@ def track_accuracy(model, loader):
     return accuracy
 
 #@title Training
-def training(model, num_epochs, train_loader, criterion, optimizer):
+def training(model, num_epochs, train_loader, test_loader, criterion, optimizer):
     # Train the model
     total_step = len(train_loader)  # Total number of batches
     loss_list = []  # List to store loss values

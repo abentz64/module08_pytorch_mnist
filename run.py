@@ -38,34 +38,25 @@ def main():
     print("-"*25)
     print(f"\nTraining for {num_epochs} epochs with batch size {batch_size} and learning rate {learning_rate}\n")
     print("-"*25)
-    
+
     # MNIST dataset
     # Download & load the training dataset, applying a transformation to convert images to PyTorch tensors
-    train_dataset = torchvision.datasets.MNIST(root='./data',
-                                            train=True,
-                                            transform=transforms.ToTensor(),
-                                            download=True)
+    train_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=transforms.ToTensor(), download=True)
 
     # Download & load the test dataset, applying a transformation to convert images to PyTorch tensors
-    test_dataset = torchvision.datasets.MNIST(root='./data',
-                                            train=False,
-                                            transform=transforms.ToTensor())
+    test_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=transforms.ToTensor())
     # Data loader
     # DataLoader provides an iterable over the dataset with support for batching, shuffling, & parallel data loading
-    train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                            batch_size=batch_size,
-                                            shuffle=True)
-
+    train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
+    
     # DataLoader for the test dataset, used for evaluating the model
-    test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
-                                            batch_size=batch_size,
-                                            shuffle=False)
+    test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
 
     # Create an instance of the model & move it to the configured device (GPU/CPU)
     model = ConvNet().to(device)
 
     # Print the model for observation
-    print(model)
+    #print(model)
 
     # Loss & optimizer
     # CrossEntropyLoss combines nn.LogSoftmax & nn.NLLLoss in one single class
@@ -75,7 +66,7 @@ def main():
 
     # Training the model
     model, loss_list, acc_train, acc_test = training(model, num_epochs,
-                                                    train_loader, criterion, optimizer)
+                                                    train_loader, test_loader, criterion, optimizer)
     # Make some plots!
     plot(loss_list, acc_train, acc_test)
     pass
