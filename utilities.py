@@ -20,8 +20,21 @@ def plot(loss_list, acc_train, acc_test, save_path='./figure.png'):
     plt.subplot(1, 2, 1)
     plt.plot(loss_list)
     plt.xlabel('Iteration')
+    plt.ylabel('Loss')
+    plt.legend()
+
+    #plot the training results
+    plt.subplot(1, 2, 2)
+    plt.plot(acc_train, label='Training accuracy')
+    plt.plot(acc_test, label='Test accuracy')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy (%)')
+    plt.legend()
+    
+    plt.tight_layout()  # Adjust subplots to fit into figure area.
     plt.savefig(save_path)
 
+    
 
 #Convolutional neural network
 class ConvNet(nn.Module):
